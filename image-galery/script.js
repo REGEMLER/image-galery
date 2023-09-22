@@ -1,42 +1,49 @@
 const grid = document.getElementById("grid"); 
 const search = document.getElementById("input"); 
 const error = document.querySelector(".error");
+const loader = document.querySelector(".loader");
+const btn = document.querySelector(".fa-search");
+const X = document.querySelector(".fa-times");
 
 async function getFoto(query) {
     try {
-        const img = new Image();
+        const li = document.createElement("li");
+        loader.classList.add("loader_active");
+        li.classList.add("img");
         const url = `https://api.unsplash.com/photos/random?query=${query}&client_id=6pJV3K7B93fP_mmR31tE_zXipoY-1wqf8aUuukVWG3c`;
         const res = await fetch(url);
         const data = await res.json();
         const src = await data.urls.regular;
         const urlSRc = `url(${src})`;
-        img.src = await src;
-        img.onload = () => {
-            const li = document.createElement("li");
-            li.classList.add("img");
-            li.style.backgroundImage = urlSRc;
-            grid.append(li); 
-            error.textContent = "";
-        };
+        li.style.backgroundImage = urlSRc;
+        grid.append(li);
     } catch (err) {
+        console.log(err)
         error.textContent = "There was a problem sending your request. Please try again….";
+    } finally {
+        loader.classList.remove("loader_active");
     }
-  }
+}
 
-  function handler(event){
+async function getFotos(value){
+    const items = new Array(6); 
+    grid.innerHTML = ""; 
+    for await (let i of items) {
+        getFoto(value)
+    }
+}
+
+function handler(event){
     event.preventDefault();
     const value = event.target.value;
-    getFoto(value);
-  }
+    getFotos(value);
+}
 
-  search.addEventListener("change", handler)
-
-//   getFoto("morning")
-//   getFoto("morning")
-//   getFoto("morning")
-//   getFoto("morning")
-//   getFoto("morning")
-//   getFoto("morning")
-//   getFoto("summer")
-//   getFoto("night")
-//   getFoto("winter")
+X.addEventListener("click", () => {
+    search.value = ""; 
+})
+search.addEventListener("change", handler);
+window.onload = function() {
+    search.focus();
+    getFotos("winter");
+}
