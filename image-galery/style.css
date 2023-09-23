@@ -28,6 +28,10 @@
     width: 1280px;
     margin: auto;
   }
+
+  .main {
+    min-height: 80vh;
+  }
   
   header {
     border-bottom: 5px solid orange;
@@ -115,7 +119,10 @@
   }
 
   .footer {
-    width: 90%;
+    width: 100%;
+    padding: 1rem;
+    max-height: 20vh;
+    background-color: orange;
     margin: 1rem auto;
     display: flex;
     align-items: center;
@@ -137,12 +144,12 @@
 }
 
 .footer-text {
-    font-size: 20px;
+    font-size: 18px;
     color: white;
 }
 
 .footer-link {
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     text-decoration: none;
 }
