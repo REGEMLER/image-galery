@@ -17,6 +17,7 @@ async function getFoto(query) {
         const urlSRc = `url(${src})`;
         li.style.backgroundImage = urlSRc;
         grid.append(li);
+        error.textContent = ""; 
     } catch (err) {
         console.log(err)
         error.textContent = "There was a problem sending your request. Please try again….";
@@ -39,7 +40,9 @@ function handler(event){
     getFotos(value);
 }
 
-X.addEventListener("click", () => {
+X.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     search.value = ""; 
 })
 search.addEventListener("change", handler);
