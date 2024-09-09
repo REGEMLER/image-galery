@@ -10,6 +10,7 @@
   html {
     overflow-x: hidden;
     margin-right: calc(-1 * (100vw - 100%));
+    height: 100%;
   }
   
   body {
@@ -17,11 +18,15 @@
     background-color: black;
     color: white;
     overflow-x: hidden;
+    height: 100%;
   }
 
   .wrapper {
     width: 100%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
   
   .container {
@@ -30,7 +35,7 @@
   }
 
   .main {
-    min-height: 80vh;
+    flex: 1 0 auto;
   }
   
   header {
@@ -121,13 +126,13 @@
   .footer {
     width: 100%;
     padding: 1rem;
-    max-height: 20vh;
     background-color: orange;
-    margin: 1rem auto;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 15rem;
+    flex: 0 0 auto;
 }
 
 .footer-rs {
@@ -145,12 +150,12 @@
 
 .footer-text {
     font-size: 18px;
-    color: white;
+    color: black;
 }
 
 .footer-link {
     font-size: 18px;
-    color: white;
+    color: black;
     text-decoration: none;
 }
 
